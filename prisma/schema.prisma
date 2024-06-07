@@ -12,3 +12,46 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model ChildInformation {
+  childId             Int                   @id @default(autoincrement())
+  childName           String
+  birthDate           DateTime
+  birthPlace          String
+  motherName          String
+  fatherName          String
+  birthHeight         Float
+  birthWeight         Float
+  sex                 String
+  ChildMedicalHistory ChildMedicalHistory[]
+  ChildImmunization   ChildImmunization[]
+}
+
+model Vaccine {
+  vaccineName       String              @id @unique
+  doseNumber        Int
+  recommendedAge    String
+  description       String
+  ChildImmunization ChildImmunization[]
+}
+
+model ChildImmunization {
+  vaccineDate   DateTime
+  vaccine       Vaccine          @relation(fields: [vaccineName], references: [vaccineName])
+  vaccineName   String
+  child         ChildInformation @relation(fields: [childId], references: [childId])
+  childId       Int
+  nextVisitDate DateTime
+  remarks       String
+
+  @@id([vaccineDate, vaccineName, childId])
+}
+
+model ChildMedicalHistory {
+  childDiagnosisId Int              @id @default(autoincrement())
+  diagnosisDate    DateTime
+  diagnosis        String
+  description      String
+  child            ChildInformation @relation(fields: [childId], references: [childId])
+  childId          Int
+}

@@ -47,3 +47,4 @@ dist-ssr
 *.sw?
 
 client/!.vscode
+/erd/
