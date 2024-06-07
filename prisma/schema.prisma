@@ -16,7 +16,7 @@ datasource db {
 model ChildInformation {
   childId             Int                   @id @default(autoincrement())
   childName           String
-  birthDate           DateTime
+  birthDate           String
   birthPlace          String
   motherName          String
   fatherName          String
@@ -36,7 +36,7 @@ model Vaccine {
 }
 
 model ChildImmunization {
-  vaccineDate   DateTime
+  vaccineDate   DateTime         @default(now())
   vaccine       Vaccine          @relation(fields: [vaccineName], references: [vaccineName])
   vaccineName   String
   child         ChildInformation @relation(fields: [childId], references: [childId])
@@ -49,7 +49,7 @@ model ChildImmunization {
 
 model ChildMedicalHistory {
   childDiagnosisId Int              @id @default(autoincrement())
-  diagnosisDate    DateTime
+  diagnosisDate    DateTime         @default(now())
   diagnosis        String
   description      String
   child            ChildInformation @relation(fields: [childId], references: [childId])

@@ -2,6 +2,8 @@ import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
+import { vaccineRoutes } from './routes/vaccine';
+import { childRoutes } from './routes/child';
 
 const app = new Hono();
 
@@ -11,6 +13,8 @@ app.get('/', (c) => {
     return c.json({ message: 'Server is running....' }, 200);
 });
 
+app.route('/vaccines', vaccineRoutes);
+app.route('/children', childRoutes);
 const port = 3000;
 console.log(`Server is running on port http://localhost:${port}`);
 
