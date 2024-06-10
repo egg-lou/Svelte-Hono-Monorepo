@@ -4,7 +4,7 @@ import { logger } from 'hono/logger';
 import { cors } from 'hono/cors';
 import { vaccineRoutes } from './routes/vaccine';
 import { childRoutes } from './routes/child';
-import {childImmunizationRoute} from "./routes/childImmunization";
+import { childImmunizationRoute } from './routes/childImmunization';
 
 const app = new Hono();
 

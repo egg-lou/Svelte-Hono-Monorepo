@@ -36,12 +36,12 @@ model Vaccine {
 }
 
 model ChildImmunization {
-  vaccineDate   DateTime         @default(now())
+  vaccineDate   String
   vaccine       Vaccine          @relation(fields: [vaccineName], references: [vaccineName])
   vaccineName   String
   child         ChildInformation @relation(fields: [childId], references: [childId])
   childId       Int
-  nextVisitDate DateTime
+  nextVisitDate String
   remarks       String
 
   @@id([vaccineDate, vaccineName, childId])

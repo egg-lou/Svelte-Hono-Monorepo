@@ -8,7 +8,7 @@ export const ChildImmunization = z.object({
     remarks: z.string(),
 });
 
-export const addChildImmunization = ChildImmunization.omit({ childId: true });
+export const addChildImmunization = ChildImmunization;
 export const updateChildImmunization = z.object({
     vaccineDate: z.string().date().optional(),
     vaccineName: z.string().optional(),
