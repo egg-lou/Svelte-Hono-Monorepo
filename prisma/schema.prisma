@@ -49,7 +49,7 @@ model ChildImmunization {
 
 model ChildMedicalHistory {
   childDiagnosisId Int              @id @default(autoincrement())
-  diagnosisDate    DateTime         @default(now())
+  diagnosisDate    String
   diagnosis        String
   description      String
   child            ChildInformation @relation(fields: [childId], references: [childId])
